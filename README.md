@@ -99,3 +99,21 @@ extraArgs:
 ```bash
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
+### Deploy Demo app
+
+1. Create k8s namespace and deploy helm chart there
+```bash 
+kubectl create namespace demo
+helm install demo-app -n production ./demo-app
+```
+
+2. Check that evrything is running 
+```bash
+kubectl get all -n demo 
+```
+
+3. Find ingress for demo-app
+```bash
+
+
+```
