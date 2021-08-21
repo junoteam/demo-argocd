@@ -1,4 +1,8 @@
-### Gitops with ArgoCD demo
+<h1 align="center">
+Deploying Argo CD in Kubernetes
+</h1>
+
+![alt text](https://github.com/junoteam/demo-argocd/blob/main/pics/argocd-welcome.png?raw=true)
 
 1. Prepare local/remote Kubernetes cluster with Minikube, k0s or k3s
    - enable/install ingress controller 
@@ -59,9 +63,37 @@ default     hello-world-ingress     <none>   hello-world.berber   192.168.99.100
 ```bash
 kubectl port-forward service/argo-cd-argocd-server -n argocd 8080:443
 ```
-5.2 To make ingress work locally please setup: 
+5.2 To make ingress work locally please setup  
 - Add the annotation for ssl passthrough
 - Add the `--insecure` flag to `server.extraArgs`
+
+In helm chart
+```bash
+ingress:
+    enabled: true
+    annotations: 
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/force-ssl-redirect: true
+      nginx.ingress.kubernetes.io/ssl-passthrough: true
+    labels: {}
+    ingressClassName: ""
+
+    ## Argo Ingress.
+    ## Hostnames must be provided if Ingress is enabled.
+    ## Secrets must be manually created in the namespace
+    ##
+    hosts:
+      - argocd.berber
+    paths:
+      - /
+    pathType: Prefix
+...
+...
+## Additional command line arguments to pass to argocd-server
+##
+extraArgs:
+ - --insecure
+```
 
 6. Get the password
 ```bash
