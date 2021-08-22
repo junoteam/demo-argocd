@@ -41,5 +41,7 @@ jobs:
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
 
-          docker tag $IMAGE_NAME ${{ env.REGISTRY }}/$IMAGE_ID
-          docker push $IMAGE_ID
+          echo $IMAGE_ID
+
+          #docker tag $IMAGE_NAME ${{ env.REGISTRY }}/$IMAGE_ID
+          #docker push $IMAGE_ID
