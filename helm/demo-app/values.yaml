@@ -1,29 +1,21 @@
 replicaCount: 2
-
 image:
   repository: "ghcr.io/junoteam/demo-argocd"
   pullPolicy: IfNotPresent
-  tag: "56e72045ab3a977ecda9d43f4c3c49464b89edc6"
-
+  tag: "aa"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
 serviceAccount:
   create: true
   annotations: {}
   name: ""
-
 podAnnotations: {}
-
 podSecurityContext: {}
-
 securityContext: {}
-
 service:
   type: ClusterIP
   port: 8080
-
 ingress:
   enabled: true
   annotations:
@@ -36,21 +28,18 @@ ingress:
         serviceName: demo-app
         servicePort: 8080
   tls: []
-
 resources:
-   limits:
-     cpu: 200m
-     memory: 256Mi
-   requests:
-     cpu: 200m
-     memory: 256Mi
-
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
-
 livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
@@ -59,7 +48,6 @@ livenessProbe:
   httpGet:
     path: /
     port: 8080
-
 readinessProbe:
   initialDelaySeconds: 5
   periodSeconds: 3
@@ -69,9 +57,6 @@ readinessProbe:
   httpGet:
     path: /
     port: 8080
-
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
