@@ -1,3 +1,4 @@
+[![Docker Image CI](https://github.com/junoteam/demo-argocd/actions/workflows/docker-image.yml/badge.svg?branch=workflow)](https://github.com/junoteam/demo-argocd/actions/workflows/docker-image.yml)
 <h1 align="center">
 Deploying Argo CD in Kubernetes
 </h1>
