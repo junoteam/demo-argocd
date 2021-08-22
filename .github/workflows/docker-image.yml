@@ -12,7 +12,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}:$(date +%s)
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -23,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: cd demo-app-code/ && docker build . --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+      run: cd demo-app-code/ && docker build . --tag $IMAGE_NAME:$(date +%s) --label "runnumber=${GITHUB_RUN_ID}"
   # The "deploy" workflow
   push:
     runs-on: ubuntu-latest
