@@ -3,7 +3,7 @@ replicaCount: 2
 image:
   repository: "ghcr.io/junoteam/demo-argocd"
   pullPolicy: IfNotPresent
-  tag: "1ae90ed951505c8f3cde9f32cf30f2b6d6b5376f"
+  tag: "app-tag"
 
 imagePullSecrets: []
 nameOverride: ""

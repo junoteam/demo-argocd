@@ -39,3 +39,7 @@ jobs:
           echo $IMAGE_ID 
           docker push $IMAGE_ID
           docker images
+
+    - name: Update Docker image Tag in Helm chart
+      run: |
+          # Substitue tag in helm/demo-app/values.yaml
