@@ -2,20 +2,15 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ workflow ]
+    branches: [ main ]
   pull_request:
-    branches: [ workflow ]
-
-    # Publish `v1.2.3` tags as releases.
-    tags:
-      - v*
+    branches: [ main ]
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}:${{ github.sha }}
 
 jobs:
-  # A workflow run is made up of one or more jobs that can run sequentially or in parallel
   build-and-push:
 
     runs-on: ubuntu-latest
