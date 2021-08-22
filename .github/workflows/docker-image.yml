@@ -39,11 +39,11 @@ jobs:
     - name: Push Docker image
       run: |
           # Change all uppercase to lowercase
-          IMAGE_ID=$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
+          IMAGE_ID=${{ env.REGISTRY }}/$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
 
           echo $IMAGE_ID
 
-          docker tag $IMAGE_NAME ${{ env.REGISTRY }}/$IMAGE_ID
+          docker tag $IMAGE_NAME $IMAGE_ID
           docker images 
-          
-          #docker push $IMAGE_ID
+
+          docker push $IMAGE_ID
