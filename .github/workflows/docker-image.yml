@@ -46,19 +46,19 @@ jobs:
           cat ./helm/demo-app/values.yaml
 
     - uses: stefanzweifel/git-auto-commit-action@v4
-    with:
-      commit_message: Automated Change
-      branch: feature-123
-      commit_options: '--no-verify --signoff'
-      file_pattern: ./helm/demo-app/values.yaml
-      repository: .
-      commit_user_name: My GitHub Actions Bot
-      commit_user_email: my-github-actions-bot@example.org
-      commit_author: Author <actions@github.com>
-      tagging_message: 'v1.0.0'
-      status_options: '--untracked-files=no'
-      add_options: '-u'
-      push_options: '--force'
-      skip_dirty_check: true    
-      skip_fetch: true        
-      disable_globbing: true
+      with:
+        commit_message: Automated Change
+        branch: feature-123
+        commit_options: '--no-verify --signoff'
+        file_pattern: ./helm/demo-app/values.yaml
+        repository: .
+        commit_user_name: My GitHub Actions Bot
+        commit_user_email: my-github-actions-bot@example.org
+        commit_author: Author <actions@github.com>
+        tagging_message: 'v1.0.0'
+        status_options: '--untracked-files=no'
+        add_options: '-u'
+        push_options: '--force'
+        skip_dirty_check: true    
+        skip_fetch: true        
+        disable_globbing: true
