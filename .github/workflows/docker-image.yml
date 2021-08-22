@@ -48,6 +48,6 @@ jobs:
           wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} \
           -O /usr/bin/yq && chmod +x /usr/bin/yq
           ls -l ./helm/demo-app/
-          echo $IMAGE_ID
           /usr/bin/yq e -i '.image.tag = "$IMAGE_ID"' ./helm/demo-app/values.yaml
           cat ./helm/demo-app/values.yaml
+          echo $IMAGE_ID
