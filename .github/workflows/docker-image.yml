@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ workflow ]
   pull_request:
-    branches: [ main ]
+    branches: [ workflow ]
 
 env:
   REGISTRY: ghcr.io
@@ -35,7 +35,30 @@ jobs:
       run: |
           # Change all uppercase to lowercase
           IMAGE_ID=${{ env.REGISTRY }}/$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
+
           docker tag $IMAGE_NAME $IMAGE_ID
           echo $IMAGE_ID 
           docker push $IMAGE_ID
           docker images
+
+          sudo snap install yq
+          yq e -i ".image.tag = \"${{ github.sha }}"\" ./helm/demo-app/values.yaml
+          cat ./helm/demo-app/values.yaml
+
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Automated Change
+        branch: workflow
+        commit_options: '--no-verify --signoff'
+        file_pattern: ./helm/demo-app/values.yaml
+        repository: .
+        commit_user_name: My GitHub Actions Bot
+        commit_user_email: berber.it@gmail.org
+        commit_author: Github actions <actions@github.com>
+        tagging_message: 'v1.0.0'
+        status_options: '--untracked-files=no'
+        add_options: '-u'
+        push_options: '--force'
+        skip_dirty_check: true    
+        skip_fetch: true        
+        disable_globbing: true
