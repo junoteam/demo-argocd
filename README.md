@@ -64,7 +64,7 @@ default     hello-world-ingress     <none>   hello-world.berber   192.168.99.100
 ```bash
 kubectl port-forward service/argo-cd-argocd-server -n argocd 8080:443
 ```
-5.2 To make ingress work locally please setup  
+5.2 To make ingress endpoint to work locally please setup  
 - Add the annotation for ssl passthrough
 - Add the `--insecure` flag to `server.extraArgs`
 
@@ -100,7 +100,7 @@ extraArgs:
 ```bash
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
-### Deploy Demo app
+### Deploy Demo app (manually - optional)
 
 1. Create k8s namespace and deploy helm chart there
 ```bash 
@@ -115,6 +115,16 @@ kubectl get all -n demo
 
 3. Find ingress for demo-app
 ```bash
+kubectl get ingress -A
+NAMESPACE   NAME                    CLASS    HOSTS                ADDRESS          PORTS   AGE
+argocd      argo-cd-argocd-server   <none>   argocd.berber        192.168.99.100   80      18h
+demo        demo-app                <none>   hello-world.berber   192.168.99.100   80      110m
+```
 
-
+4. Access ingress endpoint via browser or curl
+```bash
+curl http://hello-world.berber
+Hello, DevOps World!
+Version: 1.0.2
+Hostname: demo-app-5bdb8d7c56-4kmqz
 ```
