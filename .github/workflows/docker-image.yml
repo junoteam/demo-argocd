@@ -43,5 +43,7 @@ jobs:
 
           echo $IMAGE_ID
 
-          #docker tag $IMAGE_NAME ${{ env.REGISTRY }}/$IMAGE_ID
+          docker tag $IMAGE_NAME ${{ env.REGISTRY }}/$IMAGE_ID
+          docker images 
+          
           #docker push $IMAGE_ID
