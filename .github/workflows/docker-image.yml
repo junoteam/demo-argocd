@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ workflow ]
+    branches: [ main ]
   pull_request:
-    branches: [ workflow ]
+    branches: [ main ]
 
 env:
   REGISTRY: ghcr.io
@@ -39,15 +39,3 @@ jobs:
           echo $IMAGE_ID 
           docker push $IMAGE_ID
           docker images
-
-    - name: Update Docker image Tag in Helm chart
-      run: |
-          # Substitue tag in helm/demo-app/values.yaml
-          VERSION=v4.2.0 
-          BINARY=yq_linux_amd64
-          wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} \
-          -O /usr/bin/yq && chmod +x /usr/bin/yq
-          ls -l ./helm/demo-app/
-          /usr/bin/yq e -i '.image.tag = "$IMAGE_ID"' ./helm/demo-app/values.yaml
-          cat ./helm/demo-app/values.yaml
-          echo $IMAGE_ID
