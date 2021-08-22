@@ -42,5 +42,5 @@ jobs:
           docker images
 
           sudo snap install yq
-          yq e -i ".image.tag = \"$IMAGE_NAME"\" ./helm/demo-app/values.yaml
+          yq e -i ".image.tag = \"${{ github.sha }}"\" ./helm/demo-app/values.yaml
           cat ./helm/demo-app/values.yaml
