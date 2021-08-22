@@ -40,10 +40,7 @@ jobs:
       run: |
           # Change all uppercase to lowercase
           IMAGE_ID=${{ env.REGISTRY }}/$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
-          docker tag $IMAGE_NAME $IMAGE_ID 
+          docker tag $IMAGE_NAME $IMAGE_ID
+          echo $IMAGE_ID 
           docker push $IMAGE_ID
-
-    - name: Docker image info
-      run: |
-          echo $IMAGE_ID
           docker images
