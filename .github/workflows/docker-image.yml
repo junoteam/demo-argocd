@@ -1,10 +1,10 @@
 name: Docker Image CI
 
 on:
-#  push:
-#    branches: [ workflow ]
+  push:
+    branches: [ workflow ]
   pull_request:
-    branches: [ main ]
+    branches: [ workflow ]
 
 env:
   REGISTRY: ghcr.io
