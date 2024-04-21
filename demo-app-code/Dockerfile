@@ -1,7 +1,9 @@
 # Buil stage
 FROM golang:1.22-alpine as build
+
 WORKDIR /app
 ADD main.go .
+
 RUN CGO_ENABLED=0 GOOS=linux go build -o go-app main.go
 
 # Final stage
